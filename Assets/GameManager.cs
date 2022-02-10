@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
-        Scoretext.text = score.ToString() + "combo";
+        Scoretext.text = score.ToString() + " Combo";
     }
     public void resume(){
         pauseMenu.SetActive(false);

@@ -24,8 +24,8 @@ public class ForcePush : MonoBehaviour
             ball.AddForce(transform.right * 4, ForceMode2D.Impulse);
         }
     }
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Player")){
+    void OnCollisionEnter2D(Collision2D other){
+        if(other.collider.CompareTag("Player")){
             GameManager.score += 1;
         }
     }
