@@ -32,15 +32,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale =1;
     }
     public void Toggle_1(bool newVal){
-        toggle1 = newVal;
+        toggle1 = !toggle1;
     }
     public void Toggle_2(bool newVal2){
-        toggle2 = newVal2;
+        toggle2 = !toggle2;
     }
     public void Toggle_3(bool newVal3){
-        toggle3 = newVal3;
+        toggle3 = !toggle3;
     }
     public void Toggle_4(bool newVal4){
-        toggle4 = newVal4;
+        toggle4 = !toggle4;
     }
 }

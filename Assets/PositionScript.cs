@@ -10,10 +10,14 @@ public class PositionScript : MonoBehaviour
     public float rotationClockwiseBound;
     public float rotationCounterClockwiseBound;
 
+    float wiggleX;
+    float wiggleY;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        wiggleX = 0f;
+        wiggleY = 0f;
     }
 
     // Update is called once per frame
@@ -40,7 +44,7 @@ public class PositionScript : MonoBehaviour
             float newXdistance = topRight.x - (Mathf.Cos(angle) * paddleArcX);
             float newYdistance = topRight.y - (Mathf.Sin(angle) * paddleArcY); // it's an ellipse not a circle I know, think it feels better this way
 
-            Vector3 newPosition = new Vector3(newXdistance, newYdistance, 0);
+            Vector3 newPosition = new Vector3(newXdistance + wiggleX, newYdistance + wiggleY, 0);
             gameObject.transform.position = newPosition;
             //Debug.Log(newPosition);
 
@@ -55,5 +59,54 @@ public class PositionScript : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator computeWiggle()
+    {
+        //Base: gameObject.transform.up
+        //Modify by sin to go back and forth?
+        //Something involving Lerp?
+
+
+        for (float i = 0; i <= 1; i += 0.1f) 
+        {
+            wiggleX -= i * .03f;
+            wiggleY -= i *.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        for (float i = 0; i <= 1; i += 0.1f)
+        {
+            wiggleX += i * .03f;
+            wiggleY += i * .03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        for (float i = 0; i <= 1; i += 0.1f)
+        {
+            wiggleX += i * .01f;
+            wiggleY += i * .01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        for (float i = 0; i <= 1; i += 0.1f)
+        {
+            wiggleX -= i * .01f;
+            wiggleY -= i * .01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+    }
+
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (GameManager.toggle3)
+        {
+            Debug.Log(gameObject.transform.up * -1);
+            StartCoroutine("computeWiggle");
+
+
+        }
     }
 }

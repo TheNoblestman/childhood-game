@@ -26,7 +26,7 @@ public class ForcePush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<AudioSource>().Play();
+        //GetComponent<AudioSource>().Play();
         if(Input.GetKeyDown("r")){
             GameManager.score = 0;
             ball.transform.position = new Vector2(2.5f, -1);
