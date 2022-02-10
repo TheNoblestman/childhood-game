@@ -33,13 +33,14 @@ public class ForcePush : MonoBehaviour
             ball.velocity = new Vector2(0, 0);
             ball.AddForce(transform.up * 4, ForceMode2D.Impulse);
             ball.AddForce(transform.right * 4, ForceMode2D.Impulse);
-            audio.PlayOneShot(resetSound);
+            if (GameManager.toggle2 == true) { audio.PlayOneShot(resetSound); }
+            
         }
     }
     void OnCollisionEnter2D(Collision2D other){
         if(other.collider.CompareTag("Player")){
             GameManager.score += 1;
-            audio.PlayOneShot(hitSound);
+            if (GameManager.toggle2 == true) { audio.PlayOneShot(hitSound); }
             if(GameManager.toggle1){
                 if (!isHitted){
                     isHitted = true;
