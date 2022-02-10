@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ForcePush : MonoBehaviour
 {   
-    public AudioSource hitSound; // https://freesound.org/people/malle99/sounds/384187/
+    public AudioClip hitSound; // https://freesound.org/people/malle99/sounds/384187/
+    public AudioClip resetSound; // https://freesound.org/people/el_boss/sounds/546121/
+    private AudioSource audio;
+
     private Rigidbody2D ball;
     bool isHitted = false;
     Color defaultcolor;
@@ -17,24 +20,26 @@ public class ForcePush : MonoBehaviour
         ball.AddForce(transform.up * 4, ForceMode2D.Impulse);
         ball.AddForce(transform.right * 4, ForceMode2D.Impulse);
         defaultcolor = ballcolor.color;
-        hitSound = GetComponent<AudioSource>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        GetComponent<AudioSource>().Play();
         if(Input.GetKeyDown("r")){
             GameManager.score = 0;
             ball.transform.position = new Vector2(2.5f, -1);
             ball.velocity = new Vector2(0, 0);
             ball.AddForce(transform.up * 4, ForceMode2D.Impulse);
             ball.AddForce(transform.right * 4, ForceMode2D.Impulse);
+            audio.PlayOneShot(resetSound);
         }
     }
     void OnCollisionEnter2D(Collision2D other){
         if(other.collider.CompareTag("Player")){
             GameManager.score += 1;
-            hitSound.Play();
+            audio.PlayOneShot(hitSound);
             if(GameManager.toggle1){
                 if (!isHitted){
                     isHitted = true;
