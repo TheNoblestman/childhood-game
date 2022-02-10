@@ -34,13 +34,13 @@ public class GameManager : MonoBehaviour
     public void Toggle_1(bool newVal){
         toggle1 = newVal;
     }
-    public void Toggle_2(bool newVal){
-        toggle2 = newVal;
+    public void Toggle_2(bool newVal2){
+        toggle2 = newVal2;
     }
-    public void Toggle_3(bool newVal){
-        toggle3 = newVal;
+    public void Toggle_3(bool newVal3){
+        toggle3 = newVal3;
     }
-    public void Toggle_4(bool newVal){
-        toggle4 = newVal;
+    public void Toggle_4(bool newVal4){
+        toggle4 = newVal4;
     }
 }
