@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject pauseMenu;
-    public static bool toggle1;
-    public static bool toggle2;
-    public static bool toggle3;
-    public static bool toggle4;
+    public Text Scoretext;
+    public static int score = 0;
+    public static bool toggle1 = false;
+    public static bool toggle2 = false;
+    public static bool toggle3 = false;
+    public static bool toggle4 = false;
     public static bool paused = false;
     private void Update(){
         if(Input.GetKeyDown(KeyCode.Escape)){
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+        Scoretext.text = score.ToString() + "combo";
     }
     public void resume(){
         pauseMenu.SetActive(false);
